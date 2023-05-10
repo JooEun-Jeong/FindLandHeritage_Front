@@ -9,6 +9,10 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+redux/
+package.json
+packge-lock.json
+firebase.js
 
 # macOS
 .DS_Store
