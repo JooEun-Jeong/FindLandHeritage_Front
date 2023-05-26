@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import InputForm from '../components/InputForm'
 
 const SearchScreen = ({navigation, route}) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
       <InputForm val={route.params.keyword} isSearchScreen={true}/>
-    </SafeAreaView>
+
+    </ScrollView>
   )
 }
 

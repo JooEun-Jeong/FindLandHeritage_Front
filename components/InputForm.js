@@ -1,10 +1,20 @@
 import { Pressable, StyleSheet, Text, View, TextInput } from 'react-native'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import searchRequest from '../functions/searchRequest'
+import { Platform } from 'react-native'
+import {dev} from '../secrets.json'
 
 const InputForm = (props) => {
   const [currentValue, setCurrentValue] = React.useState(props.val);
   const [isSearchScreen, setSearchScreen] = React.useState(props.isSearchScreen);
+
+  const secrets = dev;
+  // 개발 url depending on platform
+  const iosUrl = secrets.iosUrl;
+  const androidUrl = secrets.androidUrl;
+  const url = Platform.OS === 'ios' ? iosUrl : androidUrl;
+  
   return (
     <View
       behavior={Platform.OS === 'ios' ? 300 : 100}
@@ -19,7 +29,11 @@ const InputForm = (props) => {
         style={styles.searchButton}
         hitSlop={10}
         pressRetentionOffset={10}
-        onPress={() => {
+        onPress={async () => {
+          const name = currentValue;
+          console.log("Inputform given name: ", name);
+          data = await searchRequest(name, url);
+          console.log("this is from Inputform, pressable: ", data)
           props.next.navigate('search', {keyword: currentValue});
         }}
       >
