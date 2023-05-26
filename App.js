@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import MainScreen from './screens/MainScreen';
 import DescriptionScreen from './screens/DescriptionScreen';
 import SearchScreen from './screens/SearchScreen';
-// import LoginScreen from './screens/LoginScreen';
+import MyPageScreen from './screens/MyPageScreen';
+import LoginScreen from './screens/LoginScreen';
 // import store from './redux/store';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,9 +15,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="main" component={MainScreen} />
-        {/* <Stack.Screen name="login" component={LoginScreen} /> */}
+        <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="description" component={DescriptionScreen} />
         <Stack.Screen name="search" component={SearchScreen} />
+        <Stack.Screen name="mypage" component={MyPageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

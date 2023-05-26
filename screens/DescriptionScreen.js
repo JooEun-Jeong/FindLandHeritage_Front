@@ -23,7 +23,7 @@ const DescriptionScreen = ({navigation}) => {
         {/* <Pressable style={styles.searchButton}>
           <Text style={{textAlign: 'center', fontSize: 12, fontWeight: 'bold',}}>검색하기</Text>
         </Pressable> */}
-        <InputForm next={navigation}/>
+        <InputForm next={navigation} />
       </View>
     </SafeAreaView>
   )
