@@ -1,0 +1,19 @@
+{
+  "userId": {
+    "selectIDs": [],
+    "count": {
+      "cname": 0,
+      "buyerAddr": 0,
+      "jibun": 0,
+      "area": 0
+    },
+    "product": {
+      "254": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}

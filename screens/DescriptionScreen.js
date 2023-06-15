@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, Pressable, Image } from 'react-native'
 import InputForm from '../components/InputForm';
-import Swiper from 'react-native-web-swiper';
+import Swiper from 'react-native-web-swiper'; // https://github.com/reactrondev/react-native-web-swiper
 import React from 'react'
 
 const DescriptionScreen = ({ navigation }) => {
@@ -16,7 +16,7 @@ const DescriptionScreen = ({ navigation }) => {
         <View style={{flex: 0.6, marginTop: "30%"}}>
           <Swiper
             loop={true}
-            timeout={3}
+            timeout={4}
             controlsProps={{
               dotsTouchable: true,
               dotsPos: 'bottom',
