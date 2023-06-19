@@ -31,6 +31,9 @@ const SearchScreen = ({ navigation, route }) => {
       <View style={styles.resultTable}>
         <TableSelected entities={userSelectedInfo} />
       </View>
+      <View style={styles.admob}>
+        <Text style={{textAlign:'center'}}>advertisement</Text>
+      </View>
     </SafeAreaView>
   )
 }
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20 : 0,
-    backgroundColor: '#004AAD',
+    backgroundColor: '#FFFFFF',
     justifyContent: "center",
   },
   searchBar: {
@@ -49,14 +52,15 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 10,
   },
   table: {
     flex: 1,
     paddingTop: 0,
+    backgroundColor:'#E7E8EF',
   },
   resultTable: {
     justifyContent:'center', 
-    backgroundColor:'darkblue',
   },
   horizontalLine: {
     width: "100%",
@@ -64,5 +68,10 @@ const styles = StyleSheet.create({
     flex: 0.001,
     backgroundColor: 'white',
     height: 1,
+  },
+  admob: {
+    height: 46,
+    backgroundColor: 'gray',
+    justifyContent: 'center',
   }
 })

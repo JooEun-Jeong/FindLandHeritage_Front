@@ -27,11 +27,12 @@ const InputForm = (props) => {
   return (
     <View
       behavior={Platform.OS === 'ios' ? 300 : 100}
-      style={isSearchScreen ? styles.searchArea: styles.searchAreaInSearchScreen}>
+      // style={isSearchScreen ? styles.searchArea: styles.searchAreaInSearchScreen}>
+      style={styles.searchAreaInSearchScreen}>
       <TextInput
         style={styles.inputField}
         onChangeText={text => setCurrentValue(text)}
-        placeholder=" 이름을 입력해주세요"
+        placeholder="이름을 입력해주세요"
         value={currentValue}
       />
       <Pressable
@@ -60,7 +61,7 @@ export default InputForm
 
 const styles = StyleSheet.create({
   searchArea: {
-    flex: 1.3,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     paddingLeft: "10%",
@@ -76,28 +77,30 @@ const styles = StyleSheet.create({
   },
   inputField: {
     borderColor: 'white',
-    backgroundColor: '#ffe',
+    backgroundColor: '#ECECEC',
     flex: 1,
     width: 200,
-    height: 35,
+    height: 45,
     marginLeft: 10,
     borderWidth: 1,
-    borderRadius: 5,
-    fontSize: 10,
+    borderRadius: 38,
+    fontSize: 14,
     color: '#000',
+    paddingLeft: 10,
     textAlignVertical: 'center'
   },
   searchButton: {
     marginLeft: 10,
     marginRight: 10,
     width: 60,
-    height: 35,
-    borderColor: 'white',
+    height: 45,
+    borderRadius: 38,
+    borderColor: '#black',
     borderWidth: 1,
     justifyContent: 'center',
   },
   searchText: {
-    color: '#fff',
+    color: 'black',
     textAlign: 'center',
     fontSize: 10,
   }

@@ -8,7 +8,7 @@ const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 
 export const TableData = (props) => {
-  const heads = ['번호', '성명', '한자', '매수자\n주소', '매수\n지역', '매수\n지번', '평수'];
+  const heads = ['번호', '성명', '한자', '매수자 주소', '매수 지역', '매수\n지번', '평수'];
   // let dataLength = datalst.length;
   const [datalst, setDatalst] = React.useState(props.datalst);
   const [isFound, setIsFound] = React.useState(props.isFound);
@@ -46,7 +46,7 @@ export const TableData = (props) => {
       "AREA"
     ]
     rows.push(row);
-    const row_real = [(index + 1), item.NAME, item.CNAME, item.BUYERADDR, item.GOON + " " + item.LI, item.JIBUN, item.AREA]
+    const row_real = [item.ID, item.NAME, item.CNAME, item.BUYERADDR, item.GOON + " " + item.LI, item.JIBUN, item.AREA]
     rows_real.push(row_real);
   })
 
@@ -58,7 +58,7 @@ export const TableData = (props) => {
     <View style={styles.containerData}>
       <Table>
         <Row data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} widthArr={widthArrStyle} />
-        <Rows data={rows} style={styles.contentStyle} textStyle={[styles.text, styles.contentText]} widthArr={widthArrStyle} />
+        <Rows data={rows} realData={rows_real} style={styles.contentStyle} textStyle={[styles.text, styles.contentText]} widthArr={widthArrStyle} />
       </Table>
     </View>
   )
@@ -69,21 +69,24 @@ export const TableSelected = (props) => {
   // entities의 구조: user : { count: {CNAME: 1, ADDR: 2, JIBUN: 0, AREA: 1}, product: {id:[T, T, T, F]}}
   const userCountInfo = userInfo.count;
 
-  const heads = ['', '한자', '매수자\n주소', '매수지번', '평수'];
+  const heads = ['', '한자', '매수자주소', '', '매수지번', '평수'];
   const titles = ['개수', '금액(원)'];
   const costs = [[
     userCountInfo["CNAME"] ? userCountInfo["CNAME"] : 0,
     userCountInfo["BUYERADDR"] ? userCountInfo["BUYERADDR"] : 0,
+    '',
     userCountInfo["JIBUN"] ? userCountInfo["JIBUN"] : 0,
-    userCountInfo["AREA"] ? userCountInfo["AREA"] : 0], ['1000', '2000', '20,000', '7,000']]
+    userCountInfo["AREA"] ? userCountInfo["AREA"] : 0], ['1000', '2000', '', '20,000', '7,000']]
 
   return (
     <View style={styles.containerResult}>
       <Table>
-        <Row flexArr={[1, 1, 1, 1, 1]} data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} />
+        <Row flexArr={[1.5, 1, 2, 1, 1]} data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} />
         <TableWrapper style={styles.wrapper}>
-          <Col heightArr={[20, 20]} data={titles} style={styles.colstyle} textStyle={[styles.text, styles.contentText]} />
-          <Rows flexArr={[1, 1, 1, 1, 1]} data={costs} style={styles.contentResultStyle} textStyle={[styles.text, styles.contentText]} />
+          <Col heightArr={[20, 20]} data={titles} style={styles.colstyle} textStyle={{
+            textAlign: 'center', fontSize: 12, fontWeight: 'bold',
+          }} />
+          <Rows flexArr={[1, 2, 1, 1, 1]} data={costs} style={styles.contentResultStyle} textStyle={[styles.text, styles.contentText]} />
         </TableWrapper>
       </Table>
     </View>
@@ -104,7 +107,6 @@ const styles = StyleSheet.create({
   },
   headText: {
     fontSize: 12,
-    fontWeight: 'bold',
   },
   headstyle: {
     padding: 10,
@@ -114,24 +116,26 @@ const styles = StyleSheet.create({
     borderTopWidth: 0.5,
     borderTopColor: "white",
   },
-  colstyle:{
+  colstyle: {
     padding: 10,
   },
   contentText: {
-    fontSize: 10,
+    fontSize: 12,
   },
   contentStyle: {
     justifyContent: "center",
     alignItems: "center",
     padding: 1.5,
   },
-  contentResultStyle:{
+  contentResultStyle: {
     justifyContent: "center",
     alignItems: "center",
     padding: 5,
-  },  
+    fontSize: 12,
+  },
   text: {
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
+    fontWeight: 'bold',
   },
 })
