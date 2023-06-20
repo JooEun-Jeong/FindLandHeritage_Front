@@ -7,7 +7,15 @@
       "jibun": 0,
       "area": 0
     },
-    "product": {
+    "selectedProduct": {
+      "254": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "paidProduct": {
       "254": [
         false,
         false,

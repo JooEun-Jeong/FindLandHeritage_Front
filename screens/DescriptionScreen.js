@@ -13,7 +13,7 @@ const DescriptionScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headlineArea}>
-        <Text style={styles.headline}>조상님의 이름을 검색하여{'\n'}땅을 찾아보세요.</Text>
+        <Text style={styles.headline}>조상의 이름을 검색하여{'\n'}땅을 찾아보세요.</Text>
       </View>
       <View style={{ flex:0.15 }}>
         <InputForm next={navigation} isGoingSearchScreen={true} />
