@@ -9,13 +9,33 @@ const SearchScreen = ({ navigation, route }) => {
   const jsonfile = useSelector((state) => state.landowner.data);
   const isFound = useSelector((state) => state.landowner.isFound);
   const [userSelectedInfo, setUserSelectedInfo] = React.useState({
-    "count": {
-      "CNAME": 1,
-      "JIBUN": 1,
-      "AREA": 1,
-      "BUYERADDR": 2
+    "userId": {
+      "selectIDs": [],
+      "count": {
+        "cname": 0,
+        "buyerAddr": 0,
+        "jibun": 0,
+        "area": 0
+      },
+      "selectedProduct": {
+        "254": [
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "paidProduct": {
+        "254": [
+          false,
+          true,
+          false,
+          false
+        ]
+      }
     }
   });
+  // 추후 결제 과정을 구현할 때, selectedProduct[i] or paidProduct[i] 로 조건을 따질 수 있겠다.
   
   return (
     <SafeAreaView style={styles.container} behavior={Platform.OS === 'ios' ? 300 : 100}>
