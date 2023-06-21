@@ -3,9 +3,9 @@ import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
 import searchRequest from '../functions/searchRequest'
 import { Platform } from 'react-native'
-import { dev } from '../secrets.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { clear, insert } from '../redux/slice/landownerSlice'
+import { dev } from '../config/secrets.json'
 const secrets = dev;
 
 const InputForm = (props) => {
