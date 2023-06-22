@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, ScrollView, View, Dimensions } from 'react-native'
 import React from 'react'
 // import { Table, Row, Rows } from 'react-native-table-component';
 import { Table, TableWrapper, Col } from 'react-native-table-component';
@@ -50,19 +50,27 @@ export const TableData = (props) => {
     rows_real.push(row_real);
   })
 
+  // rows.push([rows.length+1, 'g', 'g', 'g', 'g', 'g', 'g']);
+  // rows.push([rows.length+2, 'g', 'g', 'g', 'g', 'g', 'g']);
+  // rows.push([rows.length+3, 'g', 'g', 'g', 'g', 'g', 'g']);
   // flatlist 어떻게 사용하는지 알아야!
 
   const w = screenWidth * 0.95;
   const widthArrStyle = [0.1 * w, 0.1 * w, 0.1 * w, 0.25 * w, 0.2 * w, 0.1 * w, 0.15 * w];
   return (
-    <View style={styles.containerData}>
+    <ScrollView style={styles.containerData}>
       <Table>
         <Row data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} widthArr={widthArrStyle} />
         <Rows data={rows} realData={rows_real} style={styles.contentStyle} textStyle={[styles.text, styles.contentText]} widthArr={widthArrStyle} />
       </Table>
-    </View>
+    </ScrollView>
   )
 }
+
+
+
+
+
 
 export const TableSelected = (props) => {
   const [userInfo, setUserInfo] = React.useState(props.entities);
@@ -124,9 +132,9 @@ export const TableSelected = (props) => {
 const styles = StyleSheet.create({
   wrapper: { flexDirection: 'row' },
   containerData: {
-    flex: 1,
-    paddingTop: 18,
-    alignItems: 'center',
+    // flex: 1,
+    padding: 16,
+    // alignItems: 'center',
   },
   containerResult: {
     width: screenWidth,
