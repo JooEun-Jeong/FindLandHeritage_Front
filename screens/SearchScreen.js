@@ -48,7 +48,7 @@ const SearchScreen = ({ navigation, route }) => {
       <View style={styles.table}>
         <TableData datalst={jsonfile} isFound={isFound} />
       </View>
-      <View style={styles.horizontalLine} />
+      {/* <View style={styles.horizontalLine} /> */}
       <View style={styles.resultTable}>
         <TableSelected entities={userSelectedInfo} />
       </View>
@@ -76,11 +76,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   table: {
-    flex: 1,
+    flex: 0.9,
     paddingTop: 0,
     backgroundColor: '#E7E8EF',
   },
   resultTable: {
+    // flex:0.1,
     justifyContent: 'center',
   },
   horizontalLine: {

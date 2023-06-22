@@ -1,5 +1,6 @@
 {
-  "userId": {
+  "user": {
+    "userID": 1,
     "selectIDs": [],
     "count": {
       "cname": 0,
