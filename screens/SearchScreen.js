@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Platform } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native'
+import { useState, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import InputForm from '../components/InputForm'
 import { TableData, TableSelected } from '../components/Table'
@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 const SearchScreen = ({ navigation, route }) => {
   const jsonfile = useSelector((state) => state.landowner.data);
   const isFound = useSelector((state) => state.landowner.isFound);
-  const [userSelectedInfo, setUserSelectedInfo] = React.useState({
+  const [userSelectedInfo, setUserSelectedInfo] = useState({
     "userId": {
       "selectIDs": [],
       "count": {
@@ -36,7 +36,8 @@ const SearchScreen = ({ navigation, route }) => {
     }
   });
   // 추후 결제 과정을 구현할 때, selectedProduct[i] or paidProduct[i] 로 조건을 따질 수 있겠다.
-  
+
+
   return (
     <SafeAreaView style={styles.container} behavior={Platform.OS === 'ios' ? 300 : 100}>
       <View style={styles.searchBar}>
@@ -52,7 +53,7 @@ const SearchScreen = ({ navigation, route }) => {
         <TableSelected entities={userSelectedInfo} />
       </View>
       <View style={styles.admob}>
-        <Text style={{textAlign:'center'}}>advertisement</Text>
+        <Text style={{ textAlign: 'center' }}>advertisement</Text>
       </View>
     </SafeAreaView>
   )
@@ -77,10 +78,10 @@ const styles = StyleSheet.create({
   table: {
     flex: 1,
     paddingTop: 0,
-    backgroundColor:'#E7E8EF',
+    backgroundColor: '#E7E8EF',
   },
   resultTable: {
-    justifyContent:'center', 
+    justifyContent: 'center',
   },
   horizontalLine: {
     width: "100%",

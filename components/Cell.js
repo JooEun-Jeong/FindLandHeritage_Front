@@ -50,7 +50,7 @@ export const Cell = ({
   )
 
   // index == 화면에 보이는 번호 (id)
-  console.log("this is index!!! ", realid);
+  // console.log("this is index!!! ", realid);
   const handleCheckedItem = (selectState, product) => {
     // 추가하는 경우
     if(!selectState){

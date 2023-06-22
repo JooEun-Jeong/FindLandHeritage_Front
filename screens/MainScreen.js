@@ -7,19 +7,19 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 20: 0,
-    backgroundColor: '#004AAD',
+    backgroundColor: '#B8B1A1',
   },
   mainlogoArea:{
-    flex: 1,
+    flex: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   ims:{
-    width: 300,
-    height: 300,
+    width: 410,
+    height: 410,
   },
   login:{
-    flex: 1,
+    flex: 0.5,
     justifyContent: 'center',
     // marginTop: 200,
   }
