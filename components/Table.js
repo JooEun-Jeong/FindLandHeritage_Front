@@ -67,51 +67,33 @@ export const TableData = (props) => {
   )
 }
 
+export const TableSelected = ({ entities }) => {
+  const [userInfo, setUserInfo] = React.useState(entities);
 
+  let userCountInfo = userInfo["count"];
+  let cnameCount = userCountInfo["cname"];
+  let buyerAddrCount = userCountInfo["buyerAddr"];
+  let jibunCount = userCountInfo["jibun"];
+  let areaCount = userCountInfo["area"];
 
+  React.
+    useEffect(() => {
+      setUserInfo(entities);
+      console.log("this is from table selected", userInfo);
+    }, [entities]);
 
-
-
-export const TableSelected = (props) => {
-  const [userInfo, setUserInfo] = React.useState(props.entities);
-  // entities의 구조: 
-  /**
-    "userId": {
-    "selectIDs": [],
-    "count": {
-      "cname": 0,
-      "buyerAddr": 0,
-      "jibun": 0,
-      "area": 0
-    },
-    "selectedProduct": {
-      "254": [
-        false,
-        false,
-        false,
-        false
-      ]
-    },
-    "paidProduct": {
-      "254": [
-        false,
-        false,
-        false,
-        false
-      ]
-    }
-  }
-   */
-  const userCountInfo = userInfo["userId"]["count"];
-  // console.log(userCountInfo);
+  // console.log(userCountInfo); 
   const heads = ['', '한자', '매수자주소', '', '매수지번', '평수'];
   const titles = ['개수', '금액(원)'];
-  const costs = [[
-    userCountInfo["cname"] === 0 ? "0" : userCountInfo["cname"],
-    userCountInfo["buyerAddr"] === 0 ? "0" : userCountInfo["buyerAddr"],
-    '',
-    userCountInfo["jibun"] === 0 ? "0" : userCountInfo["jibun"],
-    userCountInfo["area"] === 0 ? "0" : userCountInfo["area"]], ['1000', '2000', '', '20,000', '7,000']]
+  const costs = [
+    [
+      cnameCount === 0 ? "0" : cnameCount,
+      buyerAddrCount === 0 ? "0" : buyerAddrCount,
+      '',
+      jibunCount === 0 ? "0" : jibunCount,
+      areaCount === 0 ? "0" : areaCount
+    ],
+    ['1000', '2000', '', '20,000', '7,000']]
 
   return (
     <View style={styles.containerResult}>
