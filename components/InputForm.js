@@ -26,13 +26,20 @@ const InputForm = (props) => {
     dispatch(insert(json));
   }
 
+  // 모달과 함께 조합하여 로딩 이미지를 보여주도록 함
+  const [isLoading, setIsLoading] = React.useState(false);
+
   return (
     <View
       behavior={Platform.OS === 'ios' ? 300 : 100}
       // style={isSearchScreen ? styles.searchArea: styles.searchAreaInSearchScreen}>
       style={styles.searchAreaInSearchScreen}>
       <TextInput
-        style={styles.inputField}
+        style={[styles.inputField,
+        { 
+          borderColor: !isLoading ?'white' : 'rgba(0,0,0,0.2)',
+          backgroundColor: !isLoading ? '#ECECEC' : "rgba(0,0,0,0.1)", }
+        ]}
         onChangeText={text => setCurrentValue(text)}
         placeholder="이름을 입력해주세요"
         value={currentValue}
@@ -43,12 +50,16 @@ const InputForm = (props) => {
         pressRetentionOffset={10}
         onPress={async () => {
           const name = currentValue;
+          props.setLoading(true);
+          setIsLoading(true);
           data = await searchRequest(name, url);
           handleSubmit(data);
           if (isSearchScreen) {
-            props.next.navigate('search', { keyword: currentValue});
+            props.next.navigate('search', { keyword: currentValue });
             setSearchScreen(false);
           }
+          props.setLoading(false);
+          setIsLoading(false);
         }}
       >
         <Text style={styles.searchText}>검색</Text>
@@ -76,8 +87,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputField: {
-    borderColor: 'white',
-    backgroundColor: '#ECECEC',
     flex: 1,
     width: 200,
     height: 45,
