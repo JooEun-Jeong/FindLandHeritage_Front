@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import InputForm from '../components/InputForm'
 import { TableData, TableSelected } from '../components/Table'
+import ComputeChecks from '../components/ComputeChecks'
 import { useSelector } from 'react-redux'
 
 const SearchScreen = ({ navigation, route }) => {
@@ -21,6 +22,7 @@ const SearchScreen = ({ navigation, route }) => {
       </View>
       <View style={styles.resultTable}>
         <TableSelected entities={userSelectedInfo} />
+        <ComputeChecks entities={userSelectedInfo} />
       </View>
       <View style={styles.admob}>
         <Text style={{ textAlign: 'center' }}>advertisement</Text>

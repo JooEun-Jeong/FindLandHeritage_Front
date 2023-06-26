@@ -79,32 +79,32 @@ export const TableSelected = ({ entities }) => {
   React.
     useEffect(() => {
       setUserInfo(entities);
-      console.log("this is from table selected", userInfo);
+      console.log("this is from table selected ", userInfo);
     }, [entities]);
 
-  // console.log(userCountInfo); 
-  const heads = ['', '한자', '매수자주소', '', '매수지번', '평수'];
-  const titles = ['개수', '금액(원)'];
   const costs = [
     [
+      '개수',
       cnameCount === 0 ? "0" : cnameCount,
       buyerAddrCount === 0 ? "0" : buyerAddrCount,
-      '',
+      '-',
       jibunCount === 0 ? "0" : jibunCount,
       areaCount === 0 ? "0" : areaCount
     ],
-    ['1000', '2000', '', '20,000', '7,000']]
+    ['금액(원)', '1000', '2000', '-', '20,000', '7,000']]
 
+  const w = screenWidth * 0.92;
+  const widthArrStyle = [0.2 * w,  0.1 * w, 0.25* w, 0.2 * w, 0.15* w, 0.1 * w];
   return (
     <View style={styles.containerResult}>
       <Table>
-        <Row flexArr={[1.5, 1, 2, 1, 1]} data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} />
-        <TableWrapper style={styles.wrapper}>
-          <Col heightArr={[20, 20]} data={titles} style={styles.colstyle} textStyle={{
+        {/* <Row flexArr={[1.5, 1, 2, 1, 1]} data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} /> */}
+        {/* <TableWrapper style={styles.wrapper}> */}
+          {/* <Col heightArr={[20, 20]} data={titles} style={styles.colstyle} textStyle={{
             textAlign: 'center', fontSize: 12, fontWeight: 'bold',
-          }} />
-          <Rows flexArr={[1, 2, 1, 1, 1]} data={costs} style={styles.contentResultStyle} textStyle={[styles.text, styles.contentText]} />
-        </TableWrapper>
+          }} /> */}
+          <Rows widthArr={widthArrStyle} data={costs} style={styles.contentResultStyle} textStyle={[styles.text, styles.contentText]} />
+        {/* </TableWrapper> */}
       </Table>
     </View>
   );

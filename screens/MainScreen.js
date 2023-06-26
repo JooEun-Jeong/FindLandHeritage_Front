@@ -1,6 +1,5 @@
 import { SafeAreaView, StyleSheet, View, StatusBar, Image } from "react-native";
 import React from "react";
-import InputForm from "../components/InputForm";
 import LoginButton from "../components/LoginButton";
 
 const styles = StyleSheet.create({
