@@ -1,5 +1,5 @@
 // https://github.com/dohooo/react-native-reanimated-table
-// use this codes for customization///////////////////////////
+// use this codes for customization////
 
 import React, { useMemo } from 'react';
 import CheckBox from "react-native-bouncy-checkbox"; // https://github.com/WrathChaos/react-native-bouncy-checkbox
@@ -10,8 +10,9 @@ import {
   ViewStyle,
   TextStyle,
   StyleProp,
-  // useDispatch,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { addChecks, stateShow, cancelChecks } from '../redux/slice/userSlice';
 
 export const Cell = ({
   data,
@@ -34,8 +35,8 @@ export const Cell = ({
   const [isSelectedRows, setIsSelectedRows] = React.useState(false);
   // const checkObject = checkObj[0];
   // const pushItem = checkFunc;
-  // const dispatch = useDispatch();
 
+  // console.log("row : ", shownId);
   const checkbox = (selectedState, func) => (
     <CheckBox
       isChecked={selectedState}
@@ -49,54 +50,112 @@ export const Cell = ({
     />
   )
 
-  // index == 화면에 보이는 번호 (id)
-  // console.log("this is index!!! ", realid);
+  const dispatch = useDispatch();
+  
   const handleCheckedItem = (selectState, product) => {
+    
     // 추가하는 경우
-    if(!selectState){
+    if(selectState){
+      console.log("adding");
       let boolState = true;
       if(product === "c"){
         console.log("hello");
         setIsSelectedCNAME(boolState);
         
         // userId 나중에 변경해줘야함! 세션과 함께~~
-        // dispatch(addChecks({
-        //   "userId": 1,
-        //   "showId": index,
-        //   "realId": realid,
-        //   "productItem": "c"
-        // }))
+        dispatch(addChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "c"
+        }));
+
+        dispatch(stateShow());
 
       }else if(product === "b"){
-        pushItem("addb");
         setIsSelectedBUYERADDR(boolState);
+
+        // userId 나중에 변경해줘야함! 세션과 함께~~
+        dispatch(addChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "b"
+        }));
+
+        dispatch(stateShow());
       }else if(product === "a"){
-        pushItem("adda");
         setIsSelectedAREA(boolState);
+
+        // userId 나중에 변경해줘야함! 세션과 함께~~
+        dispatch(addChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "a"
+        }));
+
+        dispatch(stateShow());
       }else if(product === "j"){
-        pushItem("addj");
         setIsSelectedJIBUN(boolState);
+
+        // userId 나중에 변경해줘야함! 세션과 함께~~
+        dispatch(addChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "j"
+        }));
+
+        dispatch(stateShow());
       }
     }
     // 취소하는 경우
     else{
+      console.log("deleting");
       let boolState = false;
       if(product === "c"){
-        pushItem("deletec");
         setIsSelectedCNAME(boolState);
+        dispatch(cancelChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "c"
+        }));
+        dispatch(stateShow());
       }else if(product === "b"){
-        pushItem("deleteb");
         setIsSelectedBUYERADDR(boolState);
+        dispatch(cancelChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "b"
+        }));
+        dispatch(stateShow());
       }else if(product === "a"){
-        pushItem("deletea");
         setIsSelectedAREA(boolState);
+        dispatch(cancelChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "a"
+        }));
+        dispatch(stateShow());
       }else if(product === "j"){
-        pushItem("deletej");
         setIsSelectedJIBUN(boolState);
+        dispatch(cancelChecks({
+          "userId": 1,
+          "shownId": shownId,
+          "realId": realid,
+          "productItem": "j"
+        }));
+        dispatch(stateShow());
       }
     }
   }
 
+  // checkbox or text를 띄울 것이냐를 결정하는 파트
+  // 추후, payment 이력에 따라 결정됨
   let textDom;
   if (React.isValidElement(data)) {
     textDom = data;
@@ -104,11 +163,11 @@ export const Cell = ({
     if (data === "CNAME") {
       textDom = checkbox(isSelectedCNAME, (e)=>{handleCheckedItem(e, "c")});
     } else if (data === "BUYERADDR") {
-      textDom = checkbox(isSelectedBUYERADDR, setIsSelectedBUYERADDR);
+      textDom = checkbox(isSelectedBUYERADDR, (e)=>{handleCheckedItem(e, "b")});
     } else if (data === "JIBUN") {
-      textDom = checkbox(isSelectedJIBUN, setIsSelectedJIBUN);
+      textDom = checkbox(isSelectedJIBUN, (e)=>{handleCheckedItem(e, "j")});
     } else if (data === "AREA") {
-      textDom = checkbox(isSelectedAREA, setIsSelectedAREA);
+      textDom = checkbox(isSelectedAREA, (e)=>{handleCheckedItem(e, "a")});
     } else {
       textDom = (
         <Text style={StyleSheet.flatten([textStyle, styles.text])} {...props}>
@@ -118,6 +177,7 @@ export const Cell = ({
     }
   }
 
+  // checkbox 기존 code
   const borderTopWidth = borderStyle?.borderWidth ?? 0;
   const borderRightWidth = borderTopWidth;
   const borderColor = borderStyle?.borderColor ?? '#000';

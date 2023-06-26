@@ -16,6 +16,7 @@ export const Row = ({
   textStyle,
   cellTextStyle,
   realid,
+  rowindex,
   ...props
 }) => {
   const width = widthArr ? sum(widthArr) : 0;
@@ -33,16 +34,16 @@ export const Row = ({
   }, [width, height]);
 
   // realId ? console.log(`realId ${realId}\n\n\n`) : realId = -1;
-
+  
   return data ? (
     <View style={StyleSheet.flatten([composedStyle, styles.row, style])}>
-      {data && data.map((item, i) => {
+      {data.map((item, i) => {
         const flex = flexArr?.[i];
         const wth = widthArr?.[i];
         return (
           <Cell
             key={"row_" + String(i)}
-            shownId={i}
+            shownId={rowindex}
             realid={realid ? realid : -2}
             data={item}
             width={wth}
@@ -152,6 +153,7 @@ export const Rows = ({
             style={style}
             textStyle={textStyle}
             realid={realid}
+            rowindex={i+1}
             {...props}
           />
         );

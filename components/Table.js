@@ -13,20 +13,20 @@ export const TableData = (props) => {
   const [datalst, setDatalst] = React.useState(props.datalst);
   const [isFound, setIsFound] = React.useState(props.isFound);
 
-  // all columns state management
-  const [isSelectedAllCNAME, setIsSelectedAllCNAME] = React.useState(false);
-  const [isSelectedAllBUYERADDR, setIsSelectedAllBUYERADDR] = React.useState(false);
-  const [isSelectedAllJIBUN, setIsSelectedAllJIBUN] = React.useState(false);
-  const [isSelectedAllAREA, setIsSelectedAllAREA] = React.useState(false);
-  const [isSelectedAllRows, setIsSelectedAllRows] = React.useState(false);
+  // // all columns state management
+  // const [isSelectedAllCNAME, setIsSelectedAllCNAME] = React.useState(false);
+  // const [isSelectedAllBUYERADDR, setIsSelectedAllBUYERADDR] = React.useState(false);
+  // const [isSelectedAllJIBUN, setIsSelectedAllJIBUN] = React.useState(false);
+  // const [isSelectedAllAREA, setIsSelectedAllAREA] = React.useState(false);
+  // const [isSelectedAllRows, setIsSelectedAllRows] = React.useState(false);
 
-  // some columns state management
-  // at least one element is selected, it is true
-  const [isSelectedSomeCNAME, setIsSelectedSomeCNAME] = React.useState(false);
-  const [isSelectedSomeBUYERADDR, setIsSelectedSomeBUYERADDR] = React.useState(false);
-  const [isSelectedSomeJIBUN, setIsSelectedSomeJIBUN] = React.useState(false);
-  const [isSelectedSomeAREA, setIsSelectedSomeAREA] = React.useState(false);
-  const [isSelectedSomeRows, setIsSelectedSomeRows] = React.useState(false);
+  // // some columns state management
+  // // at least one element is selected, it is true
+  // const [isSelectedSomeCNAME, setIsSelectedSomeCNAME] = React.useState(false);
+  // const [isSelectedSomeBUYERADDR, setIsSelectedSomeBUYERADDR] = React.useState(false);
+  // const [isSelectedSomeJIBUN, setIsSelectedSomeJIBUN] = React.useState(false);
+  // const [isSelectedSomeAREA, setIsSelectedSomeAREA] = React.useState(false);
+  // const [isSelectedSomeRows, setIsSelectedSomeRows] = React.useState(false);
 
 
   console.log("This is from Table component: ");
@@ -67,62 +67,44 @@ export const TableData = (props) => {
   )
 }
 
+export const TableSelected = ({ entities }) => {
+  const [userInfo, setUserInfo] = React.useState(entities);
 
+  let userCountInfo = userInfo["count"];
+  let cnameCount = userCountInfo["cname"];
+  let buyerAddrCount = userCountInfo["buyerAddr"];
+  let jibunCount = userCountInfo["jibun"];
+  let areaCount = userCountInfo["area"];
 
+  React.
+    useEffect(() => {
+      setUserInfo(entities);
+      console.log("this is from table selected ", userInfo);
+    }, [entities]);
 
+  const costs = [
+    [
+      '개수',
+      cnameCount === 0 ? "0" : cnameCount,
+      buyerAddrCount === 0 ? "0" : buyerAddrCount,
+      '-',
+      jibunCount === 0 ? "0" : jibunCount,
+      areaCount === 0 ? "0" : areaCount
+    ],
+    ['금액(원)', '1000', '2000', '-', '20,000', '7,000']]
 
-
-export const TableSelected = (props) => {
-  const [userInfo, setUserInfo] = React.useState(props.entities);
-  // entities의 구조: 
-  /**
-    "userId": {
-    "selectIDs": [],
-    "count": {
-      "cname": 0,
-      "buyerAddr": 0,
-      "jibun": 0,
-      "area": 0
-    },
-    "selectedProduct": {
-      "254": [
-        false,
-        false,
-        false,
-        false
-      ]
-    },
-    "paidProduct": {
-      "254": [
-        false,
-        false,
-        false,
-        false
-      ]
-    }
-  }
-   */
-  const userCountInfo = userInfo["userId"]["count"];
-
-  const heads = ['', '한자', '매수자주소', '', '매수지번', '평수'];
-  const titles = ['개수', '금액(원)'];
-  const costs = [[
-    userCountInfo["cname"] ? userCountInfo["cname"] : 0,
-    userCountInfo["buyerAddr"] ? userCountInfo["buyerAddr"] : 0,
-    '',
-    userCountInfo["jibun"] ? userCountInfo["jibun"] : 0,
-    userCountInfo["area"] ? userCountInfo["area"] : 0], ['1000', '2000', '', '20,000', '7,000']]
-
+  const w = screenWidth * 0.92;
+  const widthArrStyle = [0.2 * w,  0.1 * w, 0.25* w, 0.2 * w, 0.15* w, 0.1 * w];
   return (
     <View style={styles.containerResult}>
       <Table>
-        <Row flexArr={[1.5, 1, 2, 1, 1]} data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} />
-        <TableWrapper style={styles.wrapper}>
-          <Col heightArr={[20, 20]} data={titles} style={styles.colstyle} textStyle={{
+        {/* <Row flexArr={[1.5, 1, 2, 1, 1]} data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} /> */}
+        {/* <TableWrapper style={styles.wrapper}> */}
+          {/* <Col heightArr={[20, 20]} data={titles} style={styles.colstyle} textStyle={{
             textAlign: 'center', fontSize: 12, fontWeight: 'bold',
-          }} />
-          <Rows flexArr={[1, 2, 1, 1, 1]} data={costs} style={styles.contentResultStyle} textStyle={[styles.text, styles.contentText]} />
-        </TableWrapper>
+          }} /> */}
+          <Rows widthArr={widthArrStyle} data={costs} style={styles.contentResultStyle} textStyle={[styles.text, styles.contentText]} />
+        {/* </TableWrapper> */}
       </Table>
     </View>
   );
@@ -134,7 +116,7 @@ const styles = StyleSheet.create({
   containerData: {
     // flex: 1,
     padding: 16,
-    // alignItems: 'center',
+    // alignItems: 'center', -- error 발생함 in scrollview
   },
   containerResult: {
     width: screenWidth,
