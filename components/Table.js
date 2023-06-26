@@ -7,11 +7,15 @@ import { Row, Rows } from './Row'
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 
-export const TableData = (props) => {
+export const TableData = ({datas}) => {
+  // console.log(datas);
   const heads = ['번호', '성명', '한자', '매수자 주소', '매수 지역', '매수\n지번', '평수'];
   // let dataLength = datalst.length;
-  const [datalst, setDatalst] = React.useState(props.datalst);
-  const [isFound, setIsFound] = React.useState(props.isFound);
+  const [datalst, setDatalst] = React.useState(datas);
+
+  React.useEffect(() => {
+    setDatalst(datas);
+  }, [datas]);
 
   // // all columns state management
   // const [isSelectedAllCNAME, setIsSelectedAllCNAME] = React.useState(false);

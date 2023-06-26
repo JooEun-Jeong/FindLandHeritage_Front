@@ -5,6 +5,7 @@ import searchRequest from '../functions/searchRequest'
 import { Platform } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { clear, insert } from '../redux/slice/landownerSlice'
+import { reinitializeState } from '../redux/slice/userSlice'
 import { dev } from '../config/secrets.json'
 const secrets = dev;
 
@@ -20,6 +21,7 @@ const InputForm = (props) => {
   const dispatch = useDispatch();
 
   const handleSubmit = (json) => {
+    dispatch(reinitializeState());
     dispatch(clear())
     dispatch(insert(json));
   }
@@ -41,9 +43,7 @@ const InputForm = (props) => {
         pressRetentionOffset={10}
         onPress={async () => {
           const name = currentValue;
-          // console.log("Inputform given name: ", name);
           data = await searchRequest(name, url);
-          // console.log("this is from Inputform, pressable: ", data)
           handleSubmit(data);
           if (isSearchScreen) {
             props.next.navigate('search', { keyword: currentValue});

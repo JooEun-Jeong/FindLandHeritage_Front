@@ -39,7 +39,7 @@ const userSlice = createSlice({
         const product = givenJson.productItem; // String, ex. c(한자), b(매수자주소), j(지번), a(면적)
 
         // 번호자체가 없는 경우, 미리 생성
-        // console.log("FirstState in addchecks ", state);
+        console.log("FirstState in addchecks ", state);
         if (!state.user["selectIDs"].includes(shownId)) {
           // console.log("hhh");
           state.user["selectIDs"].push(shownId);
@@ -90,7 +90,7 @@ const userSlice = createSlice({
         const realId = givenJson.realId; // 실제 ID
         const product = givenJson.productItem; // String, c(한자), b(매수자주소), j(지번), a(면적)
 
-        // console.log("FirstState in cancelchecks ", state);
+        console.log("FirstState in cancelchecks ", state);
         // 번호자체가 없는 경우, 미리 생성
         if (!state.user["selectIDs"].includes(shownId)) {
           console.log("wrong access! in cancelchecks ");
@@ -123,18 +123,33 @@ const userSlice = createSlice({
           console.log("wrong things happened in userSlice cancelchecks");
         }
 
-        if (!productStatuslst.includes(true)){
+        if (!productStatuslst.includes(true)) {
           // product status 리스트에 true가 단 한개라도 없다면 해당 product는 selectlist에서 지워
           delete state.user["selectedProduct"][realId];
           // selectIDs에서도 삭제
           state.user["selectIDs"] = state.user["selectIDs"].filter((item) => item !== shownId);
         }
       }
+    },
+
+    reinitializeState: (state) => {
+      state.user = {
+        "userID": 1,
+        "selectIDs": [],
+        "count": {
+          "cname": 0,
+          "buyerAddr": 0,
+          "jibun": 0,
+          "area": 0
+        },
+        "selectedProduct": {},
+        "paidProduct": {},
+      };
     }
 
     // 지불된 항목들을 처리
   },
 });
 
-export const { addChecks, cancelChecks, stateShow } = userSlice.actions;
+export const { addChecks, cancelChecks, stateShow, reinitializeState } = userSlice.actions;
 export default userSlice.reducer;
