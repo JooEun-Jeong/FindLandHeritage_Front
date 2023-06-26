@@ -62,11 +62,13 @@ export const TableData = ({datas}) => {
   const w = screenWidth * 0.95;
   const widthArrStyle = [0.1 * w, 0.1 * w, 0.1 * w, 0.25 * w, 0.2 * w, 0.1 * w, 0.15 * w];
   return (
-    <ScrollView style={styles.containerData}>
-      <Table>
-        <Row data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} widthArr={widthArrStyle} />
-        <Rows data={rows} realData={rows_real} style={styles.contentStyle} textStyle={[styles.text, styles.contentText]} widthArr={widthArrStyle} />
-      </Table>
+    <ScrollView>
+      <View style={styles.containerData}>    
+        <Table>
+          <Row data={heads} style={styles.headstyle} textStyle={[styles.text, styles.headText]} widthArr={widthArrStyle} />
+          <Rows data={rows} realData={rows_real} style={styles.contentStyle} textStyle={[styles.text, styles.contentText]} widthArr={widthArrStyle} />
+        </Table>
+      </View>
     </ScrollView>
   )
 }
@@ -118,9 +120,8 @@ export const TableSelected = ({ entities }) => {
 const styles = StyleSheet.create({
   wrapper: { flexDirection: 'row' },
   containerData: {
-    // flex: 1,
-    padding: 16,
-    // alignItems: 'center', -- error 발생함 in scrollview
+    alignItems: 'center',
+    paddingBottom: 16,
   },
   containerResult: {
     width: screenWidth,
