@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Platform } from 'react-native'
+import { StyleSheet, Text, View, Platform, Modal, Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import InputForm from '../components/InputForm'
 import { TableData, TableSelected } from '../components/Table'
 import ComputeChecks from '../components/ComputeChecks'
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
 
 const SearchScreen = ({ navigation, route }) => {
   const jsonfiles = useSelector((state) => state.landowner.data);
@@ -11,18 +12,38 @@ const SearchScreen = ({ navigation, route }) => {
   const userSelectedInfo = useSelector((state) => state.userInfo.user);
   // 추후 결제 과정을 구현할 때, selectedProduct[i] or paidProduct[i] 로 조건을 따질 수 있겠다.
 
+  // 모달과 함께 조합하여 로딩 이미지를 보여주도록 함
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container} behavior={Platform.OS === 'ios' ? 300 : 100}>
-      <View style={styles.searchBar}>
-        <InputForm next={navigation} val={route.params.keyword} isGoingSearchScreen={false} />
-      </View>
-      <View style={styles.table}>
-        <TableData datas={jsonfiles} />
-      </View>
-      <View style={styles.resultTable}>
-        <TableSelected entities={userSelectedInfo} />
-        <ComputeChecks entities={userSelectedInfo} />
+    <SafeAreaView style={{
+      flex: 1,
+      paddingTop: Platform.OS === 'android' ? 20 : 0,
+      backgroundColor: '#ffffff'
+    }} behavior={Platform.OS === 'ios' ? 300 : 100}>
+      
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={isLoading}
+      >
+        <View style={styles.loadingim}>
+          <Image source={require('../assets/imgs/loading.gif')} />
+        </View>
+      </Modal>
+
+      <View style={[styles.container,
+      ]}>
+        <View style={styles.searchBar}>
+          <InputForm next={navigation} val={route.params.keyword} setLoading={setIsLoading} isGoingSearchScreen={false} />
+        </View>
+        <View style={styles.table}>
+          <TableData datas={jsonfiles} />
+        </View>
+        <View style={styles.resultTable}>
+          <TableSelected entities={userSelectedInfo} />
+          <ComputeChecks entities={userSelectedInfo} />
+        </View>
       </View>
       <View style={styles.admob}>
         <Text style={{ textAlign: 'center' }}>advertisement</Text>
@@ -36,7 +57,6 @@ export default SearchScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'android' ? 20 : 0,
     backgroundColor: '#FFFFFF',
     justifyContent: "center",
   },
@@ -46,6 +66,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
+  },
+  loadingim: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   table: {
     flex: 0.9,
