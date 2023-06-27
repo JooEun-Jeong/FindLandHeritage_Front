@@ -69,9 +69,6 @@ export const Cell = ({
           "realId": realid,
           "productItem": "c"
         }));
-
-        dispatch(stateShow());
-
       }else if(product === "b"){
         setIsSelectedBUYERADDR(boolState);
 
@@ -82,8 +79,6 @@ export const Cell = ({
           "realId": realid,
           "productItem": "b"
         }));
-
-        dispatch(stateShow());
       }else if(product === "a"){
         setIsSelectedAREA(boolState);
 
@@ -94,8 +89,6 @@ export const Cell = ({
           "realId": realid,
           "productItem": "a"
         }));
-
-        dispatch(stateShow());
       }else if(product === "j"){
         setIsSelectedJIBUN(boolState);
 
@@ -106,8 +99,6 @@ export const Cell = ({
           "realId": realid,
           "productItem": "j"
         }));
-
-        dispatch(stateShow());
       }
     }
     // 취소하는 경우
@@ -122,7 +113,6 @@ export const Cell = ({
           "realId": realid,
           "productItem": "c"
         }));
-        dispatch(stateShow());
       }else if(product === "b"){
         setIsSelectedBUYERADDR(boolState);
         dispatch(cancelChecks({
@@ -131,7 +121,6 @@ export const Cell = ({
           "realId": realid,
           "productItem": "b"
         }));
-        dispatch(stateShow());
       }else if(product === "a"){
         setIsSelectedAREA(boolState);
         dispatch(cancelChecks({
@@ -140,7 +129,6 @@ export const Cell = ({
           "realId": realid,
           "productItem": "a"
         }));
-        dispatch(stateShow());
       }else if(product === "j"){
         setIsSelectedJIBUN(boolState);
         dispatch(cancelChecks({
@@ -149,9 +137,9 @@ export const Cell = ({
           "realId": realid,
           "productItem": "j"
         }));
-        dispatch(stateShow());
       }
     }
+    dispatch(stateShow());
   }
 
   // checkbox or text를 띄울 것이냐를 결정하는 파트

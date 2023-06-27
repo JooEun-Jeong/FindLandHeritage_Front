@@ -39,7 +39,7 @@ const userSlice = createSlice({
         const product = givenJson.productItem; // String, ex. c(한자), b(매수자주소), j(지번), a(면적)
 
         // 번호자체가 없는 경우, 미리 생성
-        console.log("FirstState in addchecks ", state);
+        // console.log("FirstState in addchecks ", state);
         if (!state.user["selectIDs"].includes(shownId)) {
           // console.log("hhh");
           state.user["selectIDs"].push(shownId);
@@ -76,7 +76,7 @@ const userSlice = createSlice({
     },
 
     stateShow: (state) => {
-      // console.log("changed state in stateshow: ", state);
+      console.log("changed state in stateshow: ", state);
     },
 
     // 선택해제 항목들의 상태를 업데이트
@@ -90,7 +90,7 @@ const userSlice = createSlice({
         const realId = givenJson.realId; // 실제 ID
         const product = givenJson.productItem; // String, c(한자), b(매수자주소), j(지번), a(면적)
 
-        console.log("FirstState in cancelchecks ", state);
+        // console.log("FirstState in cancelchecks ", state);
         // 번호자체가 없는 경우, 미리 생성
         if (!state.user["selectIDs"].includes(shownId)) {
           console.log("wrong access! in cancelchecks ");

@@ -33,7 +33,7 @@ export const TableData = ({datas}) => {
   // const [isSelectedSomeRows, setIsSelectedSomeRows] = React.useState(false);
 
 
-  console.log("This is from Table component: ");
+  console.log("This is from Table Data: ");
   // console.log(datalst)
 
   // put landowner data lst in list
@@ -85,7 +85,6 @@ export const TableSelected = ({ entities }) => {
   React.
     useEffect(() => {
       setUserInfo(entities);
-      console.log("this is from table selected ", userInfo);
     }, [entities]);
 
   const costs = [

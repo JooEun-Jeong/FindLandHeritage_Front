@@ -1,7 +1,10 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable, Image, Modal } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Pressable, Image, Modal, Dimensions } from 'react-native'
 import InputForm from '../components/InputForm';
 import Swiper from 'react-native-web-swiper'; // https://github.com/reactrondev/react-native-web-swiper
 import React from 'react'
+
+const screenWidth = Dimensions.get('screen').width;
+const screenHeight = Dimensions.get('screen').height;
 
 const DescriptionScreen = ({ navigation }) => {
   const heads = [' 할아버지 이름을 입력하세요!', '집 근처 동사무소에서 제적등본을 떼세요!', '지도로 현재 예상지역을 확인하세요!', '전문가에게 맡겨보세요!'];
@@ -46,10 +49,11 @@ const DescriptionScreen = ({ navigation }) => {
                 dotActiveStyle: { backgroundColor: "#00BF63", width: 42, },
               }}
               containerStyle={{
-                height: 195,
+                height: screenHeight/3,
                 justifyContent: 'center',
                 backgroundColor: '#E7E8EF',
                 backgroundColor: !isLoading ? '#E7E8EF' : "rgba(0, 0, 0, 0.1)",
+                paddingTop: screenHeight/30,
                 borderRadius: 20,
               }}
             >
@@ -114,24 +118,10 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 14,
     textAlign: 'center',
-    marginBottom: 25,
   },
   admob: {
     height: 46,
     backgroundColor: 'gray',
     justifyContent: 'center',
   },
-  // order: {
-  //   flex: 0.2,
-  //   flexDirection: 'row',
-  //   marginLeft: "8%",
-  // },
-  // rect: {
-  //   width: "20%",
-  //   marginLeft: "2%",
-  //   marginTop: "20%",
-  //   height: "4%",
-  //   borderRadius: 10,
-  //   backgroundColor: 'white',
-  // },
 })
