@@ -55,7 +55,7 @@ const InputForm = (props) => {
           data = await searchRequest(name, url);
           handleSubmit(data);
           if (isSearchScreen) {
-            props.next.navigate('search', { keyword: currentValue });
+            props.next.navigate('searchStackNavi', { screen: 'searchR', params: {keyword: currentValue} });
             setSearchScreen(false);
           }
           props.setLoading(false);
