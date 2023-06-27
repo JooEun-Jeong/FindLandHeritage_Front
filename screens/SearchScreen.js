@@ -35,7 +35,7 @@ const SearchScreen = ({ navigation, route }) => {
       <View style={[styles.container,
       ]}>
         <View style={styles.searchBar}>
-          <InputForm next={navigation} val={route.params.keyword} setLoading={setIsLoading} isGoingSearchScreen={false} />
+          <InputForm next={navigation} val={route.params.keyword ? route.params.keyword : '이름을 입력하세요'} setLoading={setIsLoading} isGoingSearchScreen={false} />
         </View>
         <View style={styles.table}>
           <TableData datas={jsonfiles} />
